@@ -8,7 +8,7 @@ package templ
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Test() templ.Component {
+func Articles() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +29,7 @@ func Test() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>Test works!</h1>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><title>Page Title</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/styles.css\"><script type=\"text/javascript\" src=\"/static/htmx.min.js\"></script><style>\n        body {\n            font-family: Arial, Helvetica, sans-serif;\n        }\n    </style></head><body><div class=\"topNav\"><div hx-get=\"/\" hx-select=\"#page\" hx-target=\"#page\" hx-push-url=\"true\" hx-trigger=\"mousedown\">Home</div><div hx-get=\"/articles\" hx-select=\"#page\" hx-target=\"#page\" hx-push-url=\"true\" hx-trigger=\"mousedown\">Articles</div><div hx-get=\"/temp\" hx-select=\"#page\" hx-target=\"#page\" hx-push-url=\"true\" hx-trigger=\"mousedown\">Temp</div></div><div id=\"page\"><p>article page</p></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

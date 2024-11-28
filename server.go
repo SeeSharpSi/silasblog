@@ -48,8 +48,8 @@ func main() {
 
 func add_routes(mux *http.ServeMux) {
 	mux.HandleFunc("/", GetIndex)
-    mux.HandleFunc("/static/{file}", ServeStatic)
-	mux.HandleFunc("/test", GetTest)
+	mux.HandleFunc("/static/{file}", ServeStatic)
+	mux.HandleFunc("/articles", GetArticles)
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {
@@ -64,8 +64,8 @@ func GetIndex(w http.ResponseWriter, r *http.Request) {
 	component.Render(context.Background(), w)
 }
 
-func GetTest(w http.ResponseWriter, r *http.Request) {
-	log.Printf("got /test request\n")
-	component := templ.Test()
+func GetArticles(w http.ResponseWriter, r *http.Request) {
+	log.Printf("got /articles request\n")
+	component := templ.Articles()
 	component.Render(context.Background(), w)
 }

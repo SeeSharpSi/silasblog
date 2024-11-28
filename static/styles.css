@@ -1,3 +1,44 @@
-h1 {
-    color: blue;
+:root {
+  background-color: #fffaf3; /* rosePine dawn surface */
+  margin: 0;
+  padding: 0;
+  --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+  --mermaid-font: var(--default-font);
+  --reveal-font: var(--default-font);
+  --font-monospace: 'Source Code Pro', monospace;
+  font-family: var(--default-font);
+}
+
+body {
+    margin: 0;
+}
+
+.topNav {
+  background-color: #f2e9e1; /* rosepine dawn overlay */
+  font-size: 20px;
+  display: flex;
+  overflow: hidden;
+  margin-top: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.topNav div {
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  color: #575279;
+  text-decoration: none;
+}
+
+.topNav div:hover {
+    background-color: #dfdad9; /* rosepine dawn highlight med */
+    color: #56949f;
+}
+
+#page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
