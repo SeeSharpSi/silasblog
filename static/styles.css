@@ -24,11 +24,12 @@ body {
 }
 
 .topNav div {
-  padding: 16px;
-  text-align: center;
-  cursor: pointer;
-  color: #575279;
-  text-decoration: none;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    color: #575279;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .topNav div:hover {
@@ -41,4 +42,29 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    align-content: center;
+}
+
+.article_list {
+    width: 20em;
+}
+
+.article_thumbnail {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8px;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.article_thumbnail .article_thumbnail_title {
+    border-bottom: 2px solid black;
+    padding: 8px;
+}
+
+.article_thumbnail .article_thumbnail_teaser {
+    padding: 8px;
+    font-size: 12px;
 }

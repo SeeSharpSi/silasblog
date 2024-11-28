@@ -1,4 +1,4 @@
-module seesharpsi/htmx_template
+module seesharpsi/silasblog
 
 go 1.23.3
 

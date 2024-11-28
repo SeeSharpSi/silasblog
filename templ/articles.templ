@@ -4,7 +4,7 @@ templ Articles() {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
-			<title>Page Title</title>
+			<title>Silas's Blog</title>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<link rel="stylesheet" type="text/css" href="/static/styles.css"/>
@@ -23,6 +23,9 @@ templ Articles() {
 			</div>
 			<div id="page">
 				<p>article page</p>
+				<div class="article_list">
+					<div hx-trigger="load" hx-get="/articlethumbnail/1" hx-swap="outerHTML"></div>
+				</div>
 			</div>
 		</body>
 	</html>

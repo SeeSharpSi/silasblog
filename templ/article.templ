@@ -1,0 +1,26 @@
+package templ
+
+import (
+	sql "seesharpsi/silasblog/sql_funcs"
+	"strconv"
+)
+
+templ ArticleThumbnail(article sql.Article, cont bool) {
+	if cont {
+		<div class="article_thumbnail">
+			<div class="article_thumbnail_title">
+				{ article.Title }
+			</div>
+			<div class="article_thumbnail_teaser">
+				{ article.Teaser }
+			</div>
+		</div>
+		// could put a loading bar inside of these divs... 
+		<div hx-trigger="revealed" hx-get={ "/articlethumbnail/" + strconv.Itoa(article.Id+1) } hx-swap="outerHTML">
+			<div class="article_thumbnail" style="height: 80px;"></div>
+			<div class="article_thumbnail" style="height: 80px;"></div>
+			<div class="article_thumbnail" style="height: 80px;"></div>
+			<div class="article_thumbnail" style="height: 80px;"></div>
+		</div>
+	}
+}
