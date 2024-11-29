@@ -7,7 +7,7 @@ import (
 
 templ ArticleThumbnail(article sql.Article, cont bool) {
 	if cont {
-		<a style="text-decoration: none;" hx-select="#page" hx-target="#page" href={ templ.URL("/article/" + strconv.Itoa(article.Id)) }>
+		<a style="text-decoration: none;" hx-boost="true" hx-select="#page" hx-target="#page" href={ templ.URL("/article/" + strconv.Itoa(article.Id)) }>
 			<div class="article_thumbnail">
 				<div class="article_thumbnail_title">
 					{ article.Title }

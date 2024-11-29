@@ -35,7 +35,7 @@ func ArticleThumbnail(article sql.Article, cont bool) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		if cont {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a style=\"text-decoration: none;\" hx-select=\"#page\" hx-target=\"#page\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a style=\"text-decoration: none;\" hx-boost=\"true\" hx-select=\"#page\" hx-target=\"#page\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
