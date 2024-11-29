@@ -96,8 +96,10 @@ func GetArticleThumbnail(w http.ResponseWriter, r *http.Request) {
 func GetArticle(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	log.Printf("got /article/%s request\n", id)
-	// int_id, err := strconv.Atoi(id)
-	// check(err)
-	component := templ.ArticleThumbnail(sql.Article{}, true)
+	int_id, err := strconv.Atoi(id)
+	check(err)
+	article, err := sql.GetArticle(int_id)
+	check(err)
+	component := templ.Article(article)
 	component.Render(context.Background(), w)
 }

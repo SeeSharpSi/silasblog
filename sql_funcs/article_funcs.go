@@ -59,9 +59,8 @@ func GetArticles() (articles []Article) {
 func GetArticle(id int) (article Article, e error) {
 	db := connect_db()
 	defer db.Close()
-	sqlStmt := fmt.Sprintf("SELECT article_id, title, content FROM articles WHERE article_id = %d", id)
-	result, err := db.Query(sqlStmt)
-	fmt.Printf("%+v\n", result)
+	sqlStmt := "SELECT article_id, title, content FROM articles WHERE article_id = ?"
+	result, err := db.Query(sqlStmt, id)
 	defer result.Close()
 	check(err)
 	result.Next()
@@ -75,7 +74,7 @@ func GetArticle(id int) (article Article, e error) {
 func AddClick(id int) {
 	db := connect_db()
 	defer db.Close()
-	sqlStmt := fmt.Sprintf("UPDATE articles SET clicks = clicks + 1 WHERE article_id = %d", id)
-	_, err := db.Exec(sqlStmt)
+	sqlStmt := "UPDATE articles SET clicks = clicks + 1 WHERE article_id = ?"
+	_, err := db.Exec(sqlStmt, id)
 	check(err)
 }

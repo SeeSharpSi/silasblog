@@ -35,20 +35,20 @@ func ArticleThumbnail(article sql.Article, cont bool) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		if cont {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"article_thumbnail\" hx-get=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"article_thumbnail\" hx-select=\"#page\" hx-target=\"#page\" hx-push-url=\"true\" hx-trigger=\"mousedown\" hx-get=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs("/article/" + strconv.Itoa(article.Id))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templ/article_thumbnail.templ`, Line: 10, Col: 80}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templ/article_thumbnail.templ`, Line: 10, Col: 158}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"#page\"><div class=\"article_thumbnail_title\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"><div class=\"article_thumbnail_title\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
