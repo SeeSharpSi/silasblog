@@ -7,14 +7,16 @@ import (
 
 templ ArticleThumbnail(article sql.Article, cont bool) {
 	if cont {
-		<div class="article_thumbnail" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown" hx-get={ "/article/" + strconv.Itoa(article.Id) }>
-			<div class="article_thumbnail_title">
-				{ article.Title }
+		<a style="text-decoration: none;" hx-select="#page" hx-target="#page" href={ templ.URL("/article/" + strconv.Itoa(article.Id)) }>
+			<div class="article_thumbnail">
+				<div class="article_thumbnail_title">
+					{ article.Title }
+				</div>
+				<div class="article_thumbnail_teaser">
+					{ article.Teaser }
+				</div>
 			</div>
-			<div class="article_thumbnail_teaser">
-				{ article.Teaser }
-			</div>
-		</div>
+		</a>
 		// could put a loading bar inside of these divs... 
 		<div hx-trigger="revealed" hx-get={ "/articlethumbnail/" + strconv.Itoa(article.Id+1) } hx-swap="outerHTML">
 			<div class="article_thumbnail" style="height: 80px;"></div>

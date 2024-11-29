@@ -6,7 +6,7 @@ templ Article(article sql.Article) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
-			<title>Silas's Blog</title>
+			<title>Silas's Info Dump</title>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<link rel="stylesheet" type="text/css" href="/static/styles.css"/>
@@ -18,14 +18,13 @@ templ Article(article sql.Article) {
     </style>
 		</head>
 		<body>
-			<div class="topNav">
-				<div hx-get="/" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown">Home</div>
-				<div hx-get="/articles" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown">Articles</div>
-				<div hx-get="/temp" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown">Temp</div>
+			<div class="topNav" hx-boost="true">
+				<a href="/" hx-select="#page" hx-target="#page">Home</a>
+				<a href="/articles" hx-select="#page" hx-target="#page">Articles</a>
+				<a href="/temp" hx-select="#page" hx-target="#page">Temp</a>
 			</div>
 			<div id="page">
 				<div class="article">
-					this is an article
 					@templ.Raw(article.Content)
 				</div>
 			</div>
