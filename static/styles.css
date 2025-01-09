@@ -191,10 +191,11 @@ blockquote.verse a {
         }
 
         blockquote {
-            margin: 1em 0 1em 1.7em;
+            margin: 1em 0 1em 1em;
             padding-left: 1em;
             padding-right: 1em; /* added */
-            border-left: 2px solid #e6e6e6;
+            /* border-left: 2px solid #e6e6e6; */
+            box-shadow: -2px 0 0 #e6e6e6;
             /* color: #606060; this makes it harder to read */ 
         }
 
