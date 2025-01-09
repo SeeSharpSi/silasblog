@@ -6,7 +6,6 @@ import (
 	"flag"
 	"log"
 	"net/http"
-	"net/url"
 	"os"
 	"strconv"
 
@@ -22,28 +21,28 @@ func check(e error) {
 
 func main() {
 	port := flag.Int("port", 9779, "port the server runs on")
-	address := flag.String("address", "http://localhost", "address the server runs on")
+	address := flag.String("address", "localhost", "address the server runs on")
 	flag.Parse()
 
 	// ip parsing
 	base_ip := *address
 	ip := base_ip + ":" + strconv.Itoa(*port)
-	root_ip, err := url.Parse(ip)
-	if err != nil {
-		log.Panic(err)
-	}
+	// root_ip, err := url.Parse(ip)
+	//if err != nil {
+	//log.Panic(err)
+	//}
 
 	mux := http.NewServeMux()
 	add_routes(mux)
 
 	server := http.Server{
-		Addr:    root_ip.Host,
+		Addr:    ip,
 		Handler: mux,
 	}
 
 	// start server
-	log.Printf("running server on %s\n", root_ip.Host)
-	err = server.ListenAndServe()
+	log.Printf("running server on %s\n", ip)
+	err := server.ListenAndServe()
 	defer server.Close()
 	if errors.Is(err, http.ErrServerClosed) {
 		log.Printf("server closed\n")
