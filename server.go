@@ -57,7 +57,7 @@ func add_routes(mux *http.ServeMux) {
 	mux.HandleFunc("/static/{file}", ServeStatic)
 	mux.HandleFunc("/articles", GetArticles)
 	mux.HandleFunc("/articlethumbnail/{id}", GetArticleThumbnail)
-	mux.HandleFunc("/article/{id}", GetArticle)
+    mux.HandleFunc("/article/{id}", GetArticle)
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {
