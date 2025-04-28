@@ -14,7 +14,7 @@ body {
 }
 
 .topNav {
-  background-color: #f2e9e1; /* rosepine dawn overlay */
+  background-color: #1d7373; /* rosepine dawn overlay */
   font-size: 20px;
   display: flex;
   overflow: hidden;
@@ -26,14 +26,14 @@ body {
 .topNav a {
     padding: 16px;
     text-align: center;
-    color: #575279;
+    color: #fff9eb;
     text-decoration: none;
     cursor: pointer;
 }
 
 .topNav a:hover {
-    background-color: #dfdad9; /* rosepine dawn highlight med */
-    color: #56949f;
+    background-color: #207d7d; /* rosepine dawn highlight med */
+    color: #ede7da;
 }
 
 #page {
@@ -144,10 +144,6 @@ blockquote.verse a {
         }
 
         a {
-            color: #1a1a1a;
-        }
-
-        a:visited {
             color: #1a1a1a;
         }
 
