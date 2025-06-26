@@ -17,12 +17,8 @@ templ Articles() {
 		</head>
 		<body>
 			<div class="topNav" hx-boost="true">
-				// <div hx-get="/" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown">Home</div>
-				// <div hx-get="/articles" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown">Articles</div>
-				// <div hx-get="/temp" hx-select="#page" hx-target="#page" hx-push-url="true" hx-trigger="mousedown">Temp</div>
 				<a href="/" hx-select="#page" hx-target="#page">Home</a>
 				<a href="/articles" hx-select="#page" hx-target="#page">Articles</a>
-				<a href="/temp" hx-select="#page" hx-target="#page">Temp</a>
 			</div>
 			<div id="page">
 				<h1>Articles</h1>
@@ -30,6 +26,7 @@ templ Articles() {
 					<div hx-trigger="load" hx-get="/articlethumbnail/1" hx-swap="outerHTML"></div>
 				</div>
 			</div>
+			<div id="cookies">this site doesn't use cookies.<br/>most sites don't need them tbh...</div>
 		</body>
 	</html>
 }
