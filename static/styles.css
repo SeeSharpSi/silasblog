@@ -15,7 +15,7 @@ body {
 }
 
 .topNav {
-  background-color: #f2e9e1; /* rosepine dawn overlay */
+  background-color: #1d7373; /* rosepine dawn overlay */
   font-size: 20px;
   display: flex;
   overflow: hidden;
@@ -27,14 +27,14 @@ body {
 .topNav a {
     padding: 16px;
     text-align: center;
-    color: #575279;
+    color: #fff9eb;
     text-decoration: none;
     cursor: pointer;
 }
 
 .topNav a:hover {
-    background-color: #dfdad9; /* rosepine dawn highlight med */
-    color: #56949f;
+    background-color: #207d7d; /* rosepine dawn highlight med */
+    color: #ede7da;
 }
 
 #page {
@@ -104,6 +104,53 @@ blockquote.verse a {
     line-height: 200%;
 }
 
+.headshot_box {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.headshot {
+    width: 16vw;
+    outline: 2px solid #1d7373;
+    margin-right: 10px;
+    z-index: 1000;
+}
+
+.headshot_txt {
+    display: flex;
+    flex-direction: column;
+}
+
+.headshot_txt ul {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* or space-evenly */
+    height: 100%;
+    margin: 0;
+    margin-left: 16px;
+    padding: 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+@keyframes slideInFromUnder {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.headshot_txt li {
+    opacity: 0; 
+    transform: translateX(-50px);
+}
+
 /* everything below is from pandoc */
         html {
             color: #1a1a1a;
@@ -164,10 +211,6 @@ blockquote.verse a {
         }
 
         a {
-            color: #1a1a1a;
-        }
-
-        a:visited {
             color: #1a1a1a;
         }
 

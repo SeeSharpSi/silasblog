@@ -21,9 +21,36 @@ templ Index() {
 				<a href="/articles" hx-select="#page" hx-target="#page">Articles</a>
 			</div>
 			<div id="page">
-				<p style="text-align: center">Opinions exist in the articles section.<br/>This page exists to show you don't need a SPA framework to make a good, multi-page website.</p>
+				<div class="headshot_box">
+					<img class="headshot" src="/static/headshot.jpg" alt="headshot"/>
+					<div class="headshot_txt">
+						<ul>
+							<li>BS in Software Engineering</li>
+							<li>Several years of full-time experience</li>
+							<li>Developed apps used by thousands of employees</li>
+							<li>Experience with containerized development pipelines</li>
+							<li>Extensive use of Python, GoLang, and PHP</li>
+							<li>Familiar with Java, C#, and Bash</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<div id="cookies">this site doesn't use cookies.<br/>most sites don't need them...</div>
+			<script>
+                document.addEventListener("htmx:afterRequest", function () {
+                    const items = document.querySelectorAll(".headshot_txt li");
+                    items.forEach((li, i) => {
+                        li.style = "opacity: 1; transform: translateX(0);";
+                    });
+                });
+                document.addEventListener("DOMContentLoaded", function () {
+                    const items = document.querySelectorAll(".headshot_txt li");
+                    items.forEach((li, i) => {
+                        setTimeout(() => {
+                            li.style.animation = "slideInFromUnder 0.5s cubic-bezier(.5,1.5,.5,1) forwards";
+                        }, i * 100); 
+                    });
+                });
+            </script>
 		</body>
 	</html>
 }
