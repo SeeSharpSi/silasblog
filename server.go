@@ -20,13 +20,15 @@ func check(e error) {
 }
 
 func main() {
-	port := flag.Int("port", 9779, "port the server runs on")
-	address := flag.String("address", "localhost", "address the server runs on")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9779"
+	}
 	flag.Parse()
 
 	// ip parsing
-	base_ip := *address
-	ip := base_ip + ":" + strconv.Itoa(*port)
+	// For Cloud Run, we listen on all available interfaces, signified by a leading ":"
+	ip := ":" + port
 	// root_ip, err := url.Parse(ip)
 	//if err != nil {
 	//log.Panic(err)
@@ -55,9 +57,9 @@ func main() {
 func add_routes(mux *http.ServeMux) {
 	mux.HandleFunc("/", GetIndex)
 	mux.HandleFunc("/static/{file}", ServeStatic)
-    mux.HandleFunc("/articles", GetArticles)
+	mux.HandleFunc("/articles", GetArticles)
 	mux.HandleFunc("/articlethumbnail/{id}", GetArticleThumbnail)
-    mux.HandleFunc("/article/{id}", GetArticle)
+	mux.HandleFunc("/article/{id}", GetArticle)
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {

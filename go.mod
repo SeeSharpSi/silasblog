@@ -4,9 +4,9 @@ go 1.23.3
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.1 // indirect
-	github.com/a-h/parse v0.0.0-20240121214402-3caf7543159a // indirect
+	github.com/a-h/parse v0.0.0-20250122154542-74294addb73e // indirect
 	github.com/a-h/protocol v0.0.0-20240704131721-1e461c188041 // indirect
-	github.com/a-h/templ v0.2.793 // indirect
+	github.com/a-h/templ v0.3.906 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/bokwoon95/wgo v0.5.7 // indirect
@@ -25,9 +25,9 @@ require (
 	go.lsp.dev/uri v0.3.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
-	golang.org/x/mod v0.20.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
-	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.23.0 // indirect
-	golang.org/x/tools v0.24.0 // indirect
+	golang.org/x/mod v0.24.0 // indirect
+	golang.org/x/net v0.39.0 // indirect
+	golang.org/x/sync v0.13.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/tools v0.32.0 // indirect
 )
