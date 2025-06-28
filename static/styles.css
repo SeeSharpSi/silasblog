@@ -56,7 +56,7 @@ body {
     position: fixed;
     bottom: 8px;
     right: 8px;
-    width: 20vw;
+    white-space: nowrap;
 }
 
 .close_cookies_btn {
@@ -126,33 +126,35 @@ blockquote.verse a {
 .headshot_box {
     margin: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 }
 
 .headshot {
     width: 16vw;
     height: 16vw;
     outline: 2px solid #1d7373;
-    margin-right: 10px;
+    margin-bottom: 10px;
     z-index: 1000;
 }
 
 .headshot_txt {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
-.headshot_txt ul {
+.headshot_txt > div {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* or space-evenly */
     height: 100%;
     margin: 0;
-    margin-left: 16px;
     padding: 0;
     padding-top: 4px;
     padding-bottom: 4px;
+    align-items: center;
 }
 
 @keyframes slideInFromUnder {
@@ -166,7 +168,7 @@ blockquote.verse a {
     }
 }
 
-.headshot_txt li {
+.headshot_txt > div > div {
     opacity: 0;
     transform: translateX(-50px);
 }
@@ -191,7 +193,7 @@ html {
     font-kerning: normal;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .article {
         font-size: 0.9em;
         padding: 12px;
@@ -199,6 +201,11 @@ html {
 
     h1 {
         font-size: 1.8em;
+    }
+
+    .headshot {
+        width: 50vw;
+        height: 50vw;
     }
 }
 
