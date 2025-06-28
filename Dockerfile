@@ -34,7 +34,7 @@ WORKDIR /
 # We only copy the compiled binary and the static assets, not the source code
 # or the Go toolchain.
 COPY --from=builder /server /server
-COPY --from=builder /app/data.db /data.db
+COPY data.db /data.db
 COPY --from=builder /app/static /static
 
 # Expose the port that the application listens on. Cloud Run uses this value.

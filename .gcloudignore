@@ -1,0 +1,19 @@
+# This file tells the gcloud tool which files to ignore when uploading.
+# By creating this file, gcloud will use it instead of .gitignore.
+# This allows us to include `data.db` in the upload, even though
+# it is excluded from source control by .gitignore.
+
+# Always ignore the git directory.
+.git
+
+# Ignore the ignore files themselves.
+.gitignore
+.gcloudignore
+
+# Ignore IDE-specific files.
+.idea/
+
+# Ignore local scripts or binaries not needed for the deployment.
+wgo.sh
+silasblog
+example_data.db
