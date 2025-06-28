@@ -4,16 +4,28 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"log"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite" // Pure Go SQLite driver
 )
 
+// dbPath holds the path to the SQLite database file.
+// It's a package-level variable that can be set at runtime.
+var dbPath string
+
+// SetDBPath sets the path for the database file. This function should be called
+// once during application initialization.
+func SetDBPath(path string) {
+	dbPath = path
+	log.Printf("Database path set to: %s", dbPath)
+}
+
 type Article struct {
-	Id      int
-	Title   string
-	Teaser  string
-	Content string
-	Clicks  int
+	Id      int    `json:"id"`
+	Title   string `json:"title"`
+	Teaser  string `json:"teaser"`
+	Content string `json:"content"`
+	Clicks  int    `json:"clicks"`
 }
 
 func check(e error) {
@@ -23,7 +35,14 @@ func check(e error) {
 }
 
 func connect_db() *sql.DB {
-	db, err := sql.Open("sqlite3", "./data.db")
+	// Check if the dbPath has been set.
+	if dbPath == "" {
+		// Panicking here because the database path is a critical, required configuration.
+		// The application cannot function without it.
+		panic("database path is not set. Please call SetDBPath() before making database calls.")
+	}
+	// Use "sqlite" as the driver name for modernc.org/sqlite
+	db, err := sql.Open("sqlite", dbPath)
 	check(err)
 	return db
 }
@@ -54,6 +73,28 @@ func GetArticles() (articles []Article) {
 		articles = append(articles, article)
 	}
 	return articles
+}
+
+func GetAllArticles() ([]Article, error) {
+	db := connect_db()
+	defer db.Close()
+	sqlStmt := "SELECT article_id, title, teaser, content, clicks FROM articles;"
+	rows, err := db.Query(sqlStmt)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var articles []Article
+	for rows.Next() {
+		var article Article
+		err := rows.Scan(&article.Id, &article.Title, &article.Teaser, &article.Content, &article.Clicks)
+		if err != nil {
+			return nil, err
+		}
+		articles = append(articles, article)
+	}
+	return articles, nil
 }
 
 func GetArticle(id int) (article Article, e error) {

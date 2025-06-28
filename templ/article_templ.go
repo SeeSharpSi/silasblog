@@ -39,7 +39,7 @@ func Article(article sql.Article) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></div><div id=\"cookies\">This site doesn't use cookies.<br>(but really, most sites shouldn't) <span class=\"close_cookies\" onclick=\"this.parentElement.style.display='none'\">&times;</span></div></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></div><div id=\"cookies\">This site doesn't use cookies.<br>(but really, most sites shouldn't) <span class=\"close_cookies_btn\" onclick=\"this.parentElement.style.display='none'\">&times;</span></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
