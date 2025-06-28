@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"flag"
 	"log"
@@ -20,17 +21,21 @@ func check(e error) {
 }
 
 func main() {
-	port := flag.Int("port", 9779, "port the server runs on")
-	address := flag.String("address", "localhost", "address the server runs on")
+	// Define a command-line flag for the database path.
+	// The default value is "/data.db", which is suitable for the Docker container.
+	dbPath := flag.String("db", "/data.db", "path to the SQLite database file")
 	flag.Parse()
 
-	// ip parsing
-	base_ip := *address
-	ip := base_ip + ":" + strconv.Itoa(*port)
-	// root_ip, err := url.Parse(ip)
-	//if err != nil {
-	//log.Panic(err)
-	//}
+	// Set the database path for the sql_funcs package.
+	sql.SetDBPath(*dbPath)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9779"
+	}
+
+	// For Cloud Run, we listen on all available interfaces, signified by a leading ":"
+	ip := ":" + port
 
 	mux := http.NewServeMux()
 	add_routes(mux)
@@ -55,15 +60,29 @@ func main() {
 func add_routes(mux *http.ServeMux) {
 	mux.HandleFunc("/", GetIndex)
 	mux.HandleFunc("/static/{file}", ServeStatic)
-    mux.HandleFunc("/articles", GetArticles)
+	mux.HandleFunc("/articles", GetArticles)
 	mux.HandleFunc("/articlethumbnail/{id}", GetArticleThumbnail)
-    mux.HandleFunc("/article/{id}", GetArticle)
+	mux.HandleFunc("/article/{id}", GetArticle)
+	mux.HandleFunc("/api/all", GetAllData)
+}
+
+func GetAllData(w http.ResponseWriter, r *http.Request) {
+	log.Printf("got /api/all request\n")
+	articles, err := sql.GetAllArticles()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Printf("error getting all articles: %s\n", err)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(articles)
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {
 	file := r.PathValue("file")
 	log.Printf("got /static/%s request\n", file)
-	http.ServeFile(w, r, "./static/"+file)
+	http.ServeFile(w, r, "static/"+file)
 }
 
 func GetIndex(w http.ResponseWriter, r *http.Request) {
