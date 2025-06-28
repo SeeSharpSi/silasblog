@@ -9,6 +9,7 @@ templ Articles() {
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<link rel="stylesheet" type="text/css" href="/static/styles.css"/>
 			<script type="text/javascript" src="/static/htmx.min.js"></script>
+            <script src="/static/script.js"></script>
 			<style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -26,7 +27,10 @@ templ Articles() {
 					<div hx-trigger="load" hx-get="/articlethumbnail/1" hx-swap="outerHTML"></div>
 				</div>
 			</div>
-			<div id="cookies">this site doesn't use cookies.<br/>most sites don't need them tbh...</div>
+            <div id="cookies">
+                This site doesn't use cookies.<br/>(but really, most sites shouldn't)
+                <span class="close_cookies_btn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
 		</body>
 	</html>
 }
