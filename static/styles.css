@@ -170,7 +170,6 @@ a:hover {
 .topNav a:focus {
     outline: 2px solid rgba(255, 255, 255, 0.8);
     outline-offset: -2px;
-    border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.1);
 }
 
