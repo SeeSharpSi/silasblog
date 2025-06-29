@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"time"
 
 	_ "modernc.org/sqlite" // Pure Go SQLite driver
 )
@@ -21,11 +22,12 @@ func SetDBPath(path string) {
 }
 
 type Article struct {
-	Id      int    `json:"id"`
-	Title   string `json:"title"`
-	Teaser  string `json:"teaser"`
-	Content string `json:"content"`
-	Clicks  int    `json:"clicks"`
+	Id        int       `json:"id"`
+	Title     string    `json:"title"`
+	Teaser    string    `json:"teaser"`
+	Content   string    `json:"content"`
+	Clicks    int       `json:"clicks"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func check(e error) {
@@ -78,7 +80,7 @@ func GetArticles() (articles []Article) {
 func GetAllArticles() ([]Article, error) {
 	db := connect_db()
 	defer db.Close()
-	sqlStmt := "SELECT article_id, title, teaser, content, clicks FROM articles;"
+	sqlStmt := "SELECT article_id, title, teaser, content, clicks, created_at FROM articles;"
 	rows, err := db.Query(sqlStmt)
 	if err != nil {
 		return nil, err
@@ -88,7 +90,7 @@ func GetAllArticles() ([]Article, error) {
 	var articles []Article
 	for rows.Next() {
 		var article Article
-		err := rows.Scan(&article.Id, &article.Title, &article.Teaser, &article.Content, &article.Clicks)
+		err := rows.Scan(&article.Id, &article.Title, &article.Teaser, &article.Content, &article.Clicks, &article.CreatedAt)
 		if err != nil {
 			return nil, err
 		}
@@ -100,7 +102,7 @@ func GetAllArticles() ([]Article, error) {
 func GetArticle(id int) (article Article, e error) {
 	db := connect_db()
 	defer db.Close()
-	sqlStmt := "SELECT article_id, title, content FROM articles WHERE article_id = ?"
+	sqlStmt := "SELECT article_id, title, content, created_at FROM articles WHERE article_id = ?"
 	result, err := db.Query(sqlStmt, id)
 	defer result.Close()
 	check(err)
@@ -108,7 +110,31 @@ func GetArticle(id int) (article Article, e error) {
 	if _, err := result.Columns(); err != nil {
 		return Article{}, errors.New(fmt.Sprintf("Article with id %d does not exist, exiting with error: %v", id, err))
 	}
-	result.Scan(&article.Id, &article.Title, &article.Content)
+
+	var createdAtStr string
+	err = result.Scan(&article.Id, &article.Title, &article.Content, &createdAtStr)
+	if err != nil {
+		return Article{}, err
+	}
+
+	// Parse the created_at string into time.Time
+	if createdAtStr != "" {
+		parsedTime, err := time.Parse("2006-01-02T15:04:05.999999999Z07:00", createdAtStr)
+		if err != nil {
+			// Try alternative formats
+			parsedTime, err = time.Parse("2006-01-02T15:04:05Z07:00", createdAtStr)
+			if err != nil {
+				parsedTime, err = time.Parse("2006-01-02 15:04:05", createdAtStr)
+				if err != nil {
+					// Set to current time if parsing fails
+					parsedTime = time.Now()
+				}
+			}
+		}
+		article.CreatedAt = parsedTime
+	} else {
+		article.CreatedAt = time.Now()
+	}
 	return article, nil
 }
 

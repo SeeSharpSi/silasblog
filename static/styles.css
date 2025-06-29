@@ -272,7 +272,7 @@ a:hover {
 }
 
 .headshot:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) rotate(4deg);
 }
 
 /* Section Styles */
@@ -571,6 +571,17 @@ section {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     line-height: 1.7;
+    position: relative;
+}
+
+.article-date {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-align: right;
 }
 
 .article h1,
@@ -715,6 +726,14 @@ section {
     .experience-card,
     .education-card {
         padding: var(--space-lg);
+    }
+
+    .article-date {
+        position: static;
+        text-align: center;
+        margin-bottom: var(--space-md);
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid var(--border-light);
     }
 
     .education-details {
