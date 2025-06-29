@@ -11,13 +11,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Handle HTMX after request events
-document.addEventListener("htmx:afterRequest", function () {
+document.addEventListener("htmx:afterRequest", function (event) {
   // Re-initialize animations after HTMX requests
   initializeAnimations();
   initializeIntersectionObserver();
 
-  // Smooth scroll to top after page transitions
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Only scroll to top for page navigation, not lazy loading
+  // Check if it's a page navigation (target is #page) and not article thumbnail loading
+  const isPageNavigation =
+    event.detail.target && event.detail.target.id === "page";
+  const isArticleThumbnail =
+    event.detail.requestConfig &&
+    event.detail.requestConfig.path &&
+    event.detail.requestConfig.path.includes("/articlethumbnail/");
+
+  if (isPageNavigation && !isArticleThumbnail) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 });
 
 // Initialize hero section animations
