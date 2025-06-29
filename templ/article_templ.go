@@ -31,7 +31,20 @@ func Article(article sql.Article) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><title>Silas's Info Dump</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/styles.css\"><script type=\"text/javascript\" src=\"/static/htmx.min.js\"></script><script src=\"/static/script.js\"></script><style>\n        body {\n            font-family: Arial, Helvetica, sans-serif;\n        }\n    </style></head><body><div class=\"topNav\" hx-boost=\"true\"><a href=\"/\" hx-select=\"#page\" hx-target=\"#page\">Home</a> <a href=\"/articles\" hx-select=\"#page\" hx-target=\"#page\">Articles</a></div><div id=\"page\"><div class=\"article\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><title>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(article.Title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templ/article.templ`, Line: 9, Col: 25}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " - Silas Tompkins</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/styles.css\"><script type=\"text/javascript\" src=\"/static/htmx.min.js\"></script><script src=\"/static/script.js\"></script><style>\n        body {\n            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n            margin: 0;\n            padding: 0;\n        }\n    </style></head><body><div class=\"topNav\" hx-boost=\"true\"><a href=\"/\" hx-select=\"#page\" hx-target=\"#page\">Home</a> <a href=\"/articles\" hx-select=\"#page\" hx-target=\"#page\">Articles</a></div><div id=\"page\"><!-- Article Content --><section class=\"article-section\"><div class=\"container\"><div class=\"article\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -39,7 +52,7 @@ func Article(article sql.Article) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></div><div id=\"cookies\">This site doesn't use cookies.<br>(but really, most sites shouldn't) <span class=\"close_cookies_btn\" onclick=\"this.parentElement.style.display='none'\">&times;</span></div></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></div></section></div><div id=\"cookies\">This site doesn't use cookies.<br>(but really, most sites shouldn't) <span class=\"close_cookies_btn\" onclick=\"this.parentElement.style.display='none'\">&times;</span></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
