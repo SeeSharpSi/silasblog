@@ -1,6 +1,8 @@
 package templ
 
-import sql "seesharpsi/silasblog/sql_funcs"
+import (
+	sql "seesharpsi/silasblog/sql_funcs"
+)
 
 templ Article(article sql.Article) {
 	<!DOCTYPE html>
@@ -30,6 +32,7 @@ templ Article(article sql.Article) {
 				<section class="article-section">
 					<div class="container">
 						<div class="article">
+							<div class="article-date" data-created-at={ article.CreatedAt.Format("2006-01-02") }></div>
 							@templ.Raw(article.Content)
 						</div>
 					</div>
@@ -39,6 +42,7 @@ templ Article(article sql.Article) {
                 This site doesn't use cookies.<br/>(but really, most sites shouldn't)
                 <span class="close_cookies_btn" onclick="this.parentElement.style.display='none'">&times;</span>
             </div>
+
 		</body>
 	</html>
 }

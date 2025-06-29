@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeScrollEffects();
   initializeSmoothScrolling();
   initializeInteractiveElements();
+  initializeArticleDate();
 });
 
 // Handle HTMX after request events
@@ -15,6 +16,7 @@ document.addEventListener("htmx:afterRequest", function (event) {
   // Re-initialize animations after HTMX requests
   initializeAnimations();
   initializeIntersectionObserver();
+  initializeArticleDate();
 
   // Only scroll to top for page navigation, not lazy loading
   // Check if it's a page navigation (target is #page) and not article thumbnail loading
@@ -271,7 +273,7 @@ function initializeInteractiveElements() {
   const headshot = document.querySelector(".headshot");
   if (headshot) {
     headshot.addEventListener("mouseenter", function () {
-      this.style.transform = "scale(1.1) rotate(2deg)";
+      this.style.transform = "scale(1.1) rotate(4deg)";
     });
 
     headshot.addEventListener("mouseleave", function () {
@@ -342,6 +344,24 @@ window.addEventListener(
     initializeAnimations();
   }, 250),
 );
+
+// Article date formatting
+function initializeArticleDate() {
+  const dateElement = document.querySelector(".article-date");
+  if (dateElement) {
+    const createdAt = dateElement.getAttribute("data-created-at");
+    if (createdAt) {
+      // Parse YYYY-MM-DD format
+      const date = new Date(createdAt + "T00:00:00");
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      dateElement.textContent = date.toLocaleDateString("en-US", options);
+    }
+  }
+}
 
 // Add loading states for better UX
 document.addEventListener("htmx:beforeRequest", function () {
