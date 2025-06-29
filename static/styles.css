@@ -167,6 +167,17 @@ a:hover {
     width: 80%;
 }
 
+.topNav a:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.topNav a:focus::after {
+    width: 80%;
+}
+
 /* Page Layout */
 #page {
     display: block;
