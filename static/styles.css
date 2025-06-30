@@ -129,7 +129,6 @@ a:hover {
         var(--accent-secondary) 100%
     );
     box-shadow: var(--shadow-md);
-    position: sticky;
     top: 0;
     z-index: 100;
     padding: 0;
