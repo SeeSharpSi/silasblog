@@ -14,7 +14,7 @@ FROM alpine:latest
 WORKDIR /
 
 COPY --from=builder /server /server
-COPY --from=builder /app/data.db /data.db
+COPY --from=builder /app/example_data.db /data.db
 COPY --from=builder /app/static /static
 
 EXPOSE 9779

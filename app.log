@@ -1,0 +1,33 @@
+2025/08/12 21:42:20 Database path set to: /data.db
+2025/08/12 21:42:20 running server on :9779
+2025/08/12 21:42:41 got /game/questions request
+2025/08/12 21:42:41 got /static/styles.css request
+2025/08/12 21:42:41 got /static/htmx.min.js request
+2025/08/12 21:42:41 got /static/script.js request
+2025/08/12 21:42:41 got / request
+2025/08/12 21:42:42 got /game/questions request
+2025/08/12 21:42:42 got /static/styles.css request
+2025/08/12 21:42:42 got /static/htmx.min.js request
+2025/08/12 21:42:42 got /static/script.js request
+2025/08/12 21:42:42 got / request
+2025/08/12 21:42:43 got /game/new-question request
+2025/08/12 21:42:44 got /game/new-question request
+2025/08/12 21:43:05 got /game/questions request
+2025/08/12 21:43:05 got /static/styles.css request
+2025/08/12 21:43:05 got /static/htmx.min.js request
+2025/08/12 21:43:05 got /static/script.js request
+2025/08/12 21:43:05 got / request
+2025/08/12 21:43:07 got /game/new-question request
+2025/08/12 21:43:08 got /game/new-question request
+2025/08/12 21:43:08 got /game/new-question request
+2025/08/12 21:43:08 got /game/new-question request
+2025/08/12 21:43:09 got /game/new-question request
+2025/08/12 21:43:09 got /game/new-question request
+2025/08/12 21:43:09 got /game/new-question request
+2025/08/12 21:43:09 got /game/new-question request
+2025/08/12 21:43:10 got /game/new-question request
+2025/08/12 21:43:10 got /game/new-question request
+2025/08/12 21:43:10 got /game/new-question request
+2025/08/12 21:43:11 got /game/new-question request
+2025/08/12 21:43:11 got /game/new-question request
+2025/08/12 21:43:11 got /game/new-question request
