@@ -550,7 +550,6 @@ section {
 }
 
 .articles-section {
-    background: var(--bg-card);
     padding: var(--space-2xl) 0;
 }
 

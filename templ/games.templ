@@ -1,0 +1,154 @@
+package templ
+
+templ Games() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>Games - Silas Tompkins</title>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<link rel="stylesheet" type="text/css" href="/static/styles.css"/>
+			<script type="text/javascript" src="/static/htmx.min.js"></script>
+			<script src="/static/script.js"></script>
+			<style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+		</head>
+		<body>
+			<div class="topNav" hx-boost="true">
+				<a href="/" hx-select="#page" hx-target="#page">Home</a>
+				<a href="/articles" hx-select="#page" hx-target="#page">Articles</a>
+				<a href="/games" hx-select="#page" hx-target="#page">Games</a>
+			</div>
+			<div id="page">
+				<style>
+			.games-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 50vh;
+				padding: 20px;
+			}
+			.games-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 40px;
+				max-width: 800px;
+				width: 100%;
+			}
+			.game-tile {
+				position: relative;
+				overflow: hidden;
+				border-radius: 15px;
+				box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				aspect-ratio: 1 / 1;
+				background-color: #f0f0f0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.game-tile:hover {
+				transform: translateY(-12px);
+				box-shadow: 0 18px 36px rgba(0,0,0,0.2);
+			}
+			.game-tile img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				position: absolute;
+				top: 0;
+				left: 0;
+				transition: filter 0.3s ease;
+			}
+			.game-tile:hover img {
+				filter: blur(4px);
+			}
+			.game-title {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 20px 15px;
+				color: white;
+				background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+				text-align: center;
+				font-size: 1.8rem;
+				font-weight: 600;
+				margin: 0;
+				transition: opacity 0.3s ease;
+			}
+			.game-tile:hover .game-title {
+				opacity: 0;
+			}
+			.game-tile .overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0,0,0,0.85);
+				color: white;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				opacity: 0;
+				transition: opacity 0.4s ease;
+				padding: 20px;
+			}
+			.game-tile:hover .overlay {
+				opacity: 1;
+			}
+			.game-tile .overlay h3 {
+				margin: 0 0 10px 0;
+				font-size: 2rem;
+				font-weight: 600;
+				color: #FFFFFF;
+				text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
+			}
+			.game-tile .overlay p {
+				margin: 0;
+				font-size: 1.2rem;
+				max-width: 80%;
+				color: #FFFFFF;
+				text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
+			}
+		</style>
+				<section class="articles-header">
+					<div class="container">
+						<h1 class="section-title">Games</h1>
+						<p class="articles-description">
+							Try some games I've created.
+						</p>
+					</div>
+				</section>
+				<div class="games-container">
+					<div class="games-grid">
+						<a href="https://silasblog.com/game/questions" class="game-tile" target="_blank">
+							<img src="/static/trivia.png" alt="Trivia Game"/>
+							<h3 class="game-title">Trivia</h3>
+							<div class="overlay">
+								<h3>Trivia</h3>
+								<p>A fun trivia game.</p>
+							</div>
+						</a>
+						<a href="https://storyai.silasblog.com" class="game-tile" target="_blank">
+							<img src="/static/mark_twain_scifi.png" alt="Story AI Game"/>
+							<h3 class="game-title">Story AI</h3>
+							<div class="overlay">
+								<h3>Story AI</h3>
+								<p>An AI-powered story generator.</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>
+}

@@ -61,11 +61,18 @@ func add_routes(mux *http.ServeMux) {
 	mux.HandleFunc("/", GetIndex)
 	mux.HandleFunc("/static/{file}", ServeStatic)
 	mux.HandleFunc("/articles", GetArticles)
+	mux.HandleFunc("/games", GetGames)
 	mux.HandleFunc("/articlethumbnail/{id}", GetArticleThumbnail)
 	mux.HandleFunc("/article/{id}", GetArticle)
 	mux.HandleFunc("/api/all", GetAllData)
 	mux.HandleFunc("/game/questions", GetGame)
 	mux.HandleFunc("/game/new-question", GetNewQuestion)
+}
+
+func GetGames(w http.ResponseWriter, r *http.Request) {
+	log.Printf("got /games request\n")
+	component := templ.Games()
+	component.Render(context.Background(), w)
 }
 
 func GetGame(w http.ResponseWriter, r *http.Request) {
