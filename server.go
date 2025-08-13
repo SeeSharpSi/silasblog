@@ -64,7 +64,25 @@ func add_routes(mux *http.ServeMux) {
 	mux.HandleFunc("/articlethumbnail/{id}", GetArticleThumbnail)
 	mux.HandleFunc("/article/{id}", GetArticle)
 	mux.HandleFunc("/api/all", GetAllData)
+	mux.HandleFunc("/game/questions", GetGame)
+	mux.HandleFunc("/game/new-question", GetNewQuestion)
 }
+
+func GetGame(w http.ResponseWriter, r *http.Request) {
+	log.Printf("got /game/questions request\n")
+	question := sql.GetRandomQuestion()
+	component := templ.Game(question)
+	component.Render(context.Background(), w)
+}
+
+func GetNewQuestion(w http.ResponseWriter, r *http.Request) {
+	log.Printf("got /game/new-question request\n")
+	question := sql.GetRandomQuestion()
+	component := templ.Question(question)
+	component.Render(context.Background(), w)
+}
+
+
 
 func GetAllData(w http.ResponseWriter, r *http.Request) {
 	log.Printf("got /api/all request\n")
